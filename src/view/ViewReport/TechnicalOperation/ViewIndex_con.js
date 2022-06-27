@@ -99,7 +99,7 @@ class ViewIndex_con extends Component{
   }
 
   async GetChartsOn(){
-    console.log("==========运行到这里！！============");
+    // console.log("==========运行到这里！！============");
 
     let ChartOnData=ChartData();    
     let OnData = await fetchSql('NON_PM_ZT','ZT_STORY_DEPT',{});
