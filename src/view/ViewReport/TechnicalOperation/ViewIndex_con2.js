@@ -9,6 +9,10 @@ class ViewIndex_con2 extends Component{
           <p>数据时间：2022-06-16 至 2022-06-22</p>
         </div>
         <div className="CountCss">
+          <div className="CounTitle">
+            <p>本周整体概况</p>
+          </div>
+
           <div>这里是发布页面</div>
         </div>
       </div>
