@@ -20,6 +20,8 @@ class ViewIndex extends Component{
     };
     this.OnClick = this.OnClick.bind(this);
   }
+
+  
   
 
   static getDerivedStateFromProps(nextProps,prevState){
