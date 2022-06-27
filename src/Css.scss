@@ -1,0 +1,157 @@
+
+
+.IndexCss{
+  padding: 0px 10px;
+  padding-top: 10px;
+  display: flex;
+  .IndexLabel{
+    flex: 1;
+    .IndexName{
+      font-size: 12px;
+      font-family: PingFangSC-Regular, PingFang SC;
+      font-weight: 400;
+      color: #666666;
+      line-height: 20px;
+      text-align: center;
+    }
+    .IndexVal{
+      padding-top: 10px;
+      font-size: 20px;
+      font-family: PingFangSC-Medium, PingFang SC;
+      font-weight: 500;
+      color: #333333;
+      line-height: 20px;
+      text-align: center;
+    }
+    .IsContInfo{
+      .ContInfo{
+        float: left;
+        display: flex;
+        .ConTitle{
+          flex: 1;
+          padding-top: 10px;
+          padding-right: 5px;
+          font-size: 12px;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 400;
+          color: #999999;
+          text-align:right;
+        }
+        .ConVal{
+          flex: 1;
+          padding-top: 10px;
+          font-size: 12px;
+          font-family: PingFangSC-Medium, PingFang SC;
+          font-weight: 400;
+          color: #666666;
+          text-align:left;
+        }
+      }      
+    }
+
+  }
+}
+
+
+.TableWhole {
+  padding: 0px 5px;
+  .TableHeard {
+    display: contents;
+  }
+  .TableBody {
+    display: contents;
+  }
+  .TableHeard table,
+  .TableBody table {
+    width: 100%;
+    font-size: 12px;
+    table-layout: fixed;
+    border-collapse: collapse;
+    text-align: center;
+    td {
+      // border: 1px solid #e7e9f0;
+      border-top: 1px solid #e7e9f0;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      // width: 16.66%;
+      line-height: 35px;
+    }
+  }
+
+  .TableHeard table{
+    tr{
+      td{
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #666666;
+      }
+    }
+  }
+
+  .TableBody table {
+    tr{
+      td{
+        font-family: PingFangSC-Regular, PingFang SC;
+        font-weight: 400;
+        color: #333333;
+      }
+    }
+  }
+
+
+}
+
+
+
+
+.ViewIndexCss{
+  // position: fixed;
+  // top: 0px;
+  z-index: 100;
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.men_css{
+  padding-top: 5px;
+  padding-bottom: 13px;
+  .men_all{
+    display: flex;
+    .MenName{
+      flex: 1;
+    }
+  }
+}
+
+.select_title_css{
+  position: relative;
+  font-size: 14px;
+  text-align: center;
+  line-height: 25px;
+
+  &.active {
+    font-size: 14px;
+    // color: #23b0a8;
+    color: #1890FF;
+    font-weight: bold;
+
+    &:after {
+      position: absolute;
+      content: "";
+      left: 50%;
+      // width: 30%;
+      transform: translateX(-50%);
+      // height: 2px;
+      // background-color: #23b0a8;
+      bottom: -3px;
+      width: 20%;
+      height: 2px;
+      background-color: #1890FF;
+      border-radius: 6px;
+    }
+  }
+}
+
+
