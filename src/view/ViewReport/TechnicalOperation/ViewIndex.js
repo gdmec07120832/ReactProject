@@ -66,7 +66,7 @@ class ViewIndex extends Component{
 
         {
           (this.state.UerValue==='0')?<ViewIndex_con />:
-          (this.state.UerValue==='1')?<ViewIndex_con2 />:''
+          (this.state.UerValue==='1')?<ViewIndex_con2 />:'ccc'
         }
       </div>
 
