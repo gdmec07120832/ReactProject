@@ -4,6 +4,9 @@ import MenuSwitch from "../components/MenuSwitch"
 import ViewIndex_con from "../TechnicalOperation/ViewIndex_con"
 import ViewIndex_con2 from "./ViewIndex_con2";
 
+import { connect } from 'react-redux'
+
+// const dispatch = useDispatch()
 
 class ViewIndex extends Component{
 
@@ -33,7 +36,15 @@ class ViewIndex extends Component{
   }
 
   componentDidMount(){
-
+    // 类组件直接 this.props.dispatch 使用
+    // this.props.dispatch({
+    //   type: 'update_routes',
+    //   routesNameMapV2:'QQQQQQQQQQQQQ',
+    //   routes:'AAAAAAAAA'
+    // });  
+    console.log("=======aaa===================");
+    console.log(this.props.routesNameMapV2);
+    console.log(this.props.routes);
   }
 
   
@@ -65,4 +76,9 @@ class ViewIndex extends Component{
 
 }
 
-export default ViewIndex;
+export default connect((state)=>{
+  return {
+    routesNameMapV2: state.routes.routesNameMapV2,
+    routes: state.routes.routes,
+  }
+})(ViewIndex);

@@ -9,6 +9,7 @@ import * as charts from 'echarts';
 import ReactEcharts from "echarts-for-react";
 import fetchSql from "../../utils/fetchSql"
 import { Radio } from 'antd';
+import { connect } from 'react-redux'
 
 
 class ViewIndex_con extends Component{
@@ -57,6 +58,9 @@ class ViewIndex_con extends Component{
   }
 
   componentDidMount(){
+    console.log("================运行到子组件这里========");
+    console.log(this.props.routesNameMapV2);
+
     this.GetViewIndex();
     this.GetChartsOn();
     this.GetTableWholeFun();
@@ -260,4 +264,9 @@ class ViewIndex_con extends Component{
 
 }
 
-export default ViewIndex_con;
+export default connect((state)=>{
+  return {
+    routesNameMapV2: state.routes.routesNameMapV2,
+    routes: state.routes.routes,
+  }
+})(ViewIndex_con) ;

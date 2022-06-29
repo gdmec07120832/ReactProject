@@ -4,8 +4,19 @@ import './Css.scss';
 import {HashRouter as Router,Link} from 'react-router-dom'  //路由配置
 
 import RoutesOn from './view/routes/index'
+import {useDispatch} from 'react-redux';  //函数组件需要加上 useDispatch 这个才能修改store的值
+
+
+
+
 
 function App() {
+  const dispatch = useDispatch()
+  dispatch({
+    type: 'update_routes',
+    routesNameMapV2:'QQQQQQQQQQQQQ',
+    routes:'AAAAAAAAA'
+  });  
   return (
     <div className="App">
       <Router>
