@@ -58,9 +58,9 @@ class ViewIndex_con extends Component{
   }
 
   componentDidMount(){
-    console.log("================运行到子组件这里========");
-    console.log(this.props.routesNameMapV2);
 
+    console.log("=========111111212122222====")
+    // console.log(this.Con1.clientHeight);
     this.GetViewIndex();
     this.GetChartsOn();
     this.GetTableWholeFun();
@@ -219,13 +219,14 @@ class ViewIndex_con extends Component{
 
     }
     this.setState({tableData:UserData});
+    this.props.SentH(this.Con1.clientHeight);
   }
 
   render(){
 
     return(
 
-        <div className="table-box">
+        <div className="table-box" ref={Con1=>(this.Con1=Con1)}>
           <div className="TimeCss">
             <p>数据时间：2022-06-16 至 2022-06-22</p>
           </div>

@@ -16,31 +16,63 @@ class ViewIndex_con2 extends Component{
     this.state={
       SetOption:ChartData(),
       ChartIsNull:false,
+      ChartIsNullTab:false,
       tableData:{
         index:'Release',
         labelD:[],
         tableD:[],
       },
       OnIndex:[
-        {OnType:'Release',sign:0,OnWith:50, IndexData:[
-          {title:'需求数量',Tnum:0,ContInfo:[]},
-          {title:'开发任务',Tnum:0,ContInfo:[]},
-          {title:'测试缺陷',Tnum:0,ContInfo:[]},
-          {title:'线上缺陷',Tnum:0,ContInfo:[]},
-          {title:'部门人数',Tnum:0,ContInfo:[]},
+        {OnType:'Release',sign:0, IndexData:[
+          {title:'发布总数',Tnum:0,ContInfo:[]},
+          {title:'常规发布',Tnum:0,ContInfo:[]},
+          {title:'紧急发布',Tnum:0,ContInfo:[]},
         ]},
       ]
     }
   }
 
   componentDidMount(){
-
+    this.GetViewData();
     this.GetChartsOn();
+    this.GetTableWholeFun();
+
+  }
+
+
+
+  async GetViewData(){
+
+    let res = await fetchSql('NON_PM_PUSH','PUSH_TOTAL',{});
+    let UserData=res.data;
+    let SetData=[];
+
+    if(UserData.length>0){
+      SetData=[
+        {OnType:'Release',sign:0,OnWith:100, IndexData:[
+          {title:'发布总数',Tnum:UserData[0].PUBLISH_CNT,ContInfo:[]},
+          {title:'常规发布',Tnum:UserData[0].ROUTINE_CNT,ContInfo:[
+            {title:'占比',val:UserData[0].ROUTINE_CNT_RATE}
+          ]},
+          {title:'紧急发布',Tnum:UserData[0].URGENT_CNT,ContInfo:[
+            {title:'占比',val:UserData[0].URGENT_CNT_RATE}
+          ]},
+        ]},
+      ];
+    }else{
+      SetData=[
+        {OnType:'Release',sign:0, IndexData:[
+          {title:'发布总数',Tnum:0,ContInfo:[]},
+          {title:'常规发布',Tnum:0,ContInfo:[]},
+          {title:'紧急发布',Tnum:0,ContInfo:[]},
+        ]},
+      ];
+    }
+    this.setState({OnIndex:SetData});
 
   }
 
   async GetChartsOn(){
-    console.log("==========fabu运行到这里！！============");
 
     let ChartOnData=ChartData();    
     // let OnData=this.UserData.SetData["NON_PM_PUSH-PUSH_DEPT"];
@@ -76,6 +108,53 @@ class ViewIndex_con2 extends Component{
 
     this.setState({SetOption:ChartOnData});
 
+  }
+
+
+  async GetTableWholeFun(){
+
+    let res = await fetchSql('NON_PM_PUSH','PUSH_DEPT',{});
+    this.TableData=res.data;
+
+    this.TableWholeFunOn(res.data);
+  }
+
+  TableWholeFunOn(SetData){
+    let UserData={
+      index:'Demand',
+      labelD:[],
+      tableD:[],
+    };
+    UserData.labelD=[
+      {Val:'部门',Width:22},
+      {Val:'发布总数',Width:16.66},
+      {Val:'常规发布',Width:16.66},
+      {Val:'占比',Width:13.32},
+      {Val:'紧急发布',Width:16.66},
+      {Val:'占比',Width:14.66}
+    ];
+    UserData.tableD=[];
+
+    if(SetData.length>0){
+      this.setState({ChartIsNullTab:false});
+      Object.keys(SetData).forEach((OnKey) => {
+        UserData.tableD.push(
+          [
+            {Val:SetData[OnKey].TWO_DEPT,Width:22},
+            {Val:SetData[OnKey].PUBLISH_CNT,Width:16.66},
+            {Val:SetData[OnKey].ROUTINE_CNT,Width:16.66},
+            {Val:SetData[OnKey].ROUTINE_CNT_RATE.toFixed(1)+'%',Width:13.32},
+            {Val:SetData[OnKey].URGENT_CNT,Width:16.66},
+            {Val:SetData[OnKey].URGENT_CNT_RATE.toFixed(1)+'%',Width:14.66},
+          ]
+        )
+      });
+    }else{
+      this.setState({ChartIsNullTab:true});
+    }
+
+    this.setState({tableData:UserData});
+    this.props.SentH(this.Con2.clientHeight);
 
   }
 
@@ -84,7 +163,7 @@ class ViewIndex_con2 extends Component{
 
   render(){
     return(
-      <div className="table-box">
+      <div className="table-box" ref={Con2=>(this.Con2=Con2)}>
         <div className="TimeCss">
           <p>数据时间：2022-06-16 至 2022-06-22</p>
         </div>
@@ -105,7 +184,14 @@ class ViewIndex_con2 extends Component{
                   style={{ height: '250px', width: '100%' }}
                 />:<Empty description={'本周无发布'} style={{height: '250px'}} />
             }
-                   
+          </div>
+
+          <div className="TableCss" style={{padding: '20px 0 0 0'}}>
+            {
+              (this.state.ChartIsNullTab===false)?
+                <Tabletcq TabData={this.state.tableData} />:
+                <Empty description={'本周无发布'} style={{height: '250px'}} />
+            }
           </div>
 
 

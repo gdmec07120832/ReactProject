@@ -1,5 +1,6 @@
 import React,{Component} from "react";
-import {HashRouter as Router,Routes,Route,Link,Navigate} from 'react-router-dom'  //路由配置
+// import {HashRouter as Router,Routes,Route,Link,Navigate} from 'react-router-dom'  //路由配置
+import {Routes,Route,Navigate} from 'react-router-dom'  //路由配置
 import Loadable from '@loadable/component'
 
 class routes extends Component{
@@ -11,6 +12,14 @@ class routes extends Component{
       exact:true,
       component:Loadable(()=> import('../components/Layout'))
     },
+
+    {
+      name:'LayoutTest',
+      path:'/LayoutTest',
+      exact:false,
+      component:Loadable(()=> import('../components/Layout_test'))
+    },
+
     {
       name:'ViewIndex',
       path:'/ViewIndex',
@@ -23,6 +32,7 @@ class routes extends Component{
       exact:false,
       component:Loadable(()=> import('../test'))
     },
+
     {
       name:'404',
       path:'/404',

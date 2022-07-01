@@ -7,7 +7,7 @@ class tabletcq extends Component{
     this.state={};
   }
   componentDidMount(){
-    console.log(this.props.TabData)
+    // console.log(this.props.TabData)
   }
 
   HandVal(Cval, Rval, val){

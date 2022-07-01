@@ -1,6 +1,6 @@
 
 export const HandleNum = (Type, val) => {
-    if (val === null || val === undefined || (!val && val !== 0) || val == 'NaN' || val == '--' || val == 0) return '--'
+    if (val === null || val === undefined || (!val && val !== 0) || val === 'NaN' || val === '--' || val === 0||val === '0') return '--'
     if (Type === 'percent') {
         return (val * 100).toFixed(2) + '%'
     } else if (Type === 'percent1') {
